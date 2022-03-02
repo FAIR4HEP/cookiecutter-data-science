@@ -8,6 +8,7 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = {{ cookiecutter.s3_bucket }}
 PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
+DOI = {{ cookiecutter.DOI }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
 
 ifeq (,$(shell which conda))
@@ -53,6 +54,10 @@ ifeq (default,$(PROFILE))
 else
 	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
 endif
+
+## Dowload Data from DOI with Zenodo
+sync_data_zenodo:
+	zenodo_get $(DOI)
 
 ## Set up python interpreter environment
 create_environment:
