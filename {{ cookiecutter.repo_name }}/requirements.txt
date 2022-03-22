@@ -2,6 +2,7 @@
 -e .
 
 # external requirements
+cookiecutter
 click
 Sphinx
 coverage
