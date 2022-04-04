@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD [ "cookiecutter", "cookiecutter-data-science"]
+# CMD [ "cookiecutter", "cookiecutter-data-science"]
