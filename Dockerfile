@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.8-slim-buster
+FROM python:3.9
 
 WORKDIR /cookiecutter-data-science
 
@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-# CMD [ "cookiecutter", "cookiecutter-data-science"]
+CMD [ "bash" ]
