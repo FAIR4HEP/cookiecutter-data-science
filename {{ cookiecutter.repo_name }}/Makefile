@@ -8,8 +8,9 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = {{ cookiecutter.s3_bucket }}
 PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
-DOI = {{ cookiecutter.DOI }}
+DOI = {{ cookiecutter.data_doi }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
+PROVIDE_DOCKER = {{ cookiecutter.provide_dockerfile }}
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False

@@ -8,5 +8,6 @@
     "aws_profile": "default",
     "data_doi": "10.XXXX/XXXX",
     "python_interpreter": ["python3", "python"],
+    "provide_dockerfile": "yes",
     "are puppies cute": "yes"
 }
