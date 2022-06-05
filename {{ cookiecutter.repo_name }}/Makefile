@@ -1,12 +1,10 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean data lint requirements download_data
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = {{ cookiecutter.s3_bucket }}
-PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 DOI = {{ cookiecutter.data_doi }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
@@ -29,6 +27,7 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
+	download_data
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
@@ -40,25 +39,18 @@ clean:
 lint:
 	flake8 src
 
-## Upload Data to S3
-sync_data_to_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync data/ s3://$(BUCKET)/data/
-else
-	aws s3 sync data/ s3://$(BUCKET)/data/ --profile $(PROFILE)
-endif
-
-## Download Data from S3
-sync_data_from_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync s3://$(BUCKET)/data/ data/
-else
-	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
-endif
-
-## Dowload Data from DOI with Zenodo
-sync_data_zenodo:
-	zenodo_get $(DOI)
+{% if 'zenodo' in cookiecutter.doi.lower() %}
+## Dowload Data from Zenodo with DOI
+download_data:
+	zenodo_get $(DOI) -o data/raw
+{% elif 'opendata' in cookiecutter.doi.lower() %}
+## Dowload Data from CERN Open Data Portal with DOI
+download_data:
+	cd data/raw && cernopendata-client download-files --doi $(DOI) && cd ../..
+{% else %}
+download_data:
+	echo "Implement download of data"
+{% endif %}
 
 ## Set up python interpreter environment
 create_environment:
