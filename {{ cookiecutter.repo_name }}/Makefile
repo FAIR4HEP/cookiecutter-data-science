@@ -39,11 +39,11 @@ clean:
 lint:
 	flake8 src
 
-{% if 'zenodo' in cookiecutter.doi.lower() %}
+{% if 'zenodo' in cookiecutter.data_doi.lower() %}
 ## Dowload Data from Zenodo with DOI
 download_data:
 	zenodo_get $(DOI) -o data/raw
-{% elif 'opendata' in cookiecutter.doi.lower() %}
+{% elif 'opendata' in cookiecutter.data_doi.lower() %}
 ## Dowload Data from CERN Open Data Portal with DOI
 download_data:
 	cd data/raw && cernopendata-client download-files --doi $(DOI) && cd ../..
