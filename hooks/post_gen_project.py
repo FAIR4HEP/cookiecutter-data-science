@@ -3,7 +3,6 @@
 import os
 import shutil
 
-# print(os.getcwd())  # prints /absolute/path/to/{{cookiecutter.repo_name}}
 
 def remove(filepath):
     if os.path.isfile(filepath):
