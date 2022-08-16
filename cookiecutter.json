@@ -2,6 +2,7 @@
     "project_name": "project_name",
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "author_name": "Your name (or your organization/company/team)",
+    "orcid": "Your ORCID",
     "description": "A short description of the project.",
     "open_source_license": [
         "MIT",
@@ -11,9 +12,6 @@
         "No license file"
     ],
     "data_doi": "10.XXXX/XXXX",
-    "python_interpreter": [
-        "python3",
-        "python"
-    ],
+    "code_doi": "10.XXXX/XXXX",
     "provide_dockerfile": "yes"
 }

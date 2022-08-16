@@ -6,9 +6,12 @@
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = {{ cookiecutter.repo_name }}
-DOI = {{ cookiecutter.data_doi }}
-PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
+DATA_DOI = {{ cookiecutter.data_doi }}
+CODE_DOI = {{ cookiecutter.code_doi }}
 PROVIDE_DOCKER = {{ cookiecutter.provide_dockerfile }}
+{% if 'kaggle' in cookiecutter.data_doi.lower() %}
+DATASET_NAME := $(shell curl -Ls -o /dev/null -w %{url_effective} https://doi.org/$(DATA_DOI) | awk -F / '{print $$5"/"$$6}')
+{% endif %}
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -22,13 +25,13 @@ endif
 
 ## Install Python Dependencies
 requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+	python3 -m pip install -U pip setuptools wheel
+	python3 -m pip install -r requirements.txt
 
 ## Make Dataset
 data: requirements
 	download_data
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	python3 src/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
 clean:
@@ -42,11 +45,15 @@ lint:
 {% if 'zenodo' in cookiecutter.data_doi.lower() %}
 ## Dowload Data from Zenodo with DOI
 download_data:
-	zenodo_get $(DOI) -o data/raw
+	zenodo_get $(DATA_DOI) -o data/raw
 {% elif 'opendata' in cookiecutter.data_doi.lower() %}
 ## Dowload Data from CERN Open Data Portal with DOI
 download_data:
-	cd data/raw && cernopendata-client download-files --doi $(DOI) && cd ../..
+	cd data/raw && cernopendata-client download-files --doi $(DATA_DOI) && cd ../..
+{% elif 'kaggle' in cookiecutter.data_doi.lower() %}
+## Dowload Data from Kaggle with dataset name
+download_data:
+	cd data/raw && kaggle datasets download $(DATASET_NAME) && cd ../..
 {% else %}
 download_data:
 	echo "Implement download of data"
@@ -55,24 +62,20 @@ download_data:
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
-		@echo ">>> Detected conda, creating conda environment."
-ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
+	@echo ">>> Detected conda, creating conda environment."
 	conda create --name $(PROJECT_NAME) python=3
+	@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
 else
-	conda create --name $(PROJECT_NAME) python=2.7
-endif
-		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
-else
-	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
+	python3 -m pip install -q virtualenv virtualenvwrapper
 	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
 	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
-	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER)"
+	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=python3"
 	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
 endif
 
 ## Test python environment is setup correctly
 test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
+	python3 test_environment.py
 
 #################################################################################
 # PROJECT RULES                                                                 #

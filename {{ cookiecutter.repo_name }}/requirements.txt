@@ -12,9 +12,6 @@ python-dotenv>=0.5.1
 zenodo_get
 {% elif 'opendata' in cookiecutter.data_doi.lower() %}
 cernopendata-client[pycurl]
-{% endif %}
-{% if cookiecutter.python_interpreter != 'python3' %}
-
-# backwards compatibility
-pathlib2
+{% elif 'kaggle' in cookiecutter.data_doi.lower() %}
+kaggle
 {% endif %}
