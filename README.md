@@ -1,14 +1,14 @@
 # Cookiecutter Data Science
 
-_A logical, reasonably standardized, but flexible project structure for doing and sharing data science work._
+_A logical, standardized, but flexible project structure for sharing AI and data science work following FAIR principles._
 
 
-#### [Project homepage](http://drivendata.github.io/cookiecutter-data-science/)
+#### [Project homepage](https://fair4hep.github.io/)
 
 
 ### Requirements to use the cookiecutter template:
 -----------
- - Python 2.7 or 3.5+
+ - Python 3.5+
  - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
 
 ``` bash
@@ -26,10 +26,8 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+    cookiecutter -c v1 https://github.com/FAIR4HEP/cookiecutter-fair-data-science/
 
-
-[![asciicast](https://asciinema.org/a/244658.svg)](https://asciinema.org/a/244658)
 
 ### New version of Cookiecutter Data Science
 ------------
@@ -95,7 +93,7 @@ The directory structure of your new project looks like this:
 
 ## Contributing
 
-We welcome contributions! [See the docs for guidelines](https://drivendata.github.io/cookiecutter-data-science/#contributing).
+We welcome contributions!
 
 ### Installing development requirements
 ------------
@@ -105,4 +103,4 @@ We welcome contributions! [See the docs for guidelines](https://drivendata.githu
 ### Running the tests
 ------------
 
-    py.test tests
+    pytest tests
