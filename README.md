@@ -8,8 +8,8 @@ _A logical, standardized, but flexible project structure for sharing AI and data
 
 ### Requirements to use the cookiecutter template:
 -----------
- - Python 3.5+
- - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
+ - Python 3.7+
+ - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 2.1.1: This can be installed with `pip` or `conda`:
 
 ``` bash
 $ pip install cookiecutter
@@ -17,7 +17,7 @@ $ pip install cookiecutter
 
 or
 
-``` bash
+```bash
 $ conda config --add channels conda-forge
 $ conda install cookiecutter
 ```
@@ -26,8 +26,9 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter -c v1 https://github.com/FAIR4HEP/cookiecutter4fair/
-
+```bash
+$ cookiecutter -https://github.com/FAIR4HEP/cookiecutter4fair/
+```
 
 ### The resulting directory structure
 ------------
