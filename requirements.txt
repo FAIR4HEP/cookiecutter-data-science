@@ -1,4 +1,4 @@
 mkdocs
 mkdocs-cinder
-cookiecutter
+cookiecutter>=2.1.1
 pytest
