@@ -27,7 +27,7 @@ $ conda install cookiecutter
 ------------
 
 ```bash
-$ cookiecutter -https://github.com/FAIR4HEP/cookiecutter4fair/
+$ cookiecutter https://github.com/FAIR4HEP/cookiecutter4fair
 ```
 
 ### The resulting directory structure
