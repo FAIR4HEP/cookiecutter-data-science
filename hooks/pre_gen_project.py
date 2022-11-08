@@ -19,4 +19,4 @@ For example:
     """)
 
 
-deprecation_warning()
+# deprecation_warning()
