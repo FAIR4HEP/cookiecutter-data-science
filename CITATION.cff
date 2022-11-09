@@ -1,0 +1,19 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Cookiecutter4FAIR
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+license: MIT
+authors:
+  - given-names: Javier Mauricio
+    family-names: Duarte
+    email: jduarte@ucsd.edu
+    affiliation: University of California San Diego
+    orcid: 'https://orcid.org/0000-0002-5076-7096'
+repository-code: https://github.com/FAIR4HEP/cookiecutter4fair
+abstract: |
+  A logical, standardized, but flexible project structure for sharing AI and data science work following FAIR principles.
