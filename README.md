@@ -1,5 +1,7 @@
 # Cookiecutter Data Science
 
+[![DOI](https://zenodo.org/badge/416494237.svg)](https://zenodo.org/badge/latestdoi/416494237)
+
 _A logical, standardized, but flexible project structure for sharing AI and data science work following FAIR principles._
 
 
@@ -89,9 +91,13 @@ We welcome contributions!
 ### Installing development requirements
 ------------
 
-    pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
 ### Running the tests
 ------------
 
-    pytest tests
+```bash
+pytest tests
+```
