@@ -41,9 +41,9 @@ The directory structure of your new project looks like this:
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   └── raw            <- The original, FAIR, and immutable data dump.
 │
-├── Dockerfile         <- For building and ensuring a containerized environment
+├── Dockerfile         <- For building a containerized environment
 |
 ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
 │
