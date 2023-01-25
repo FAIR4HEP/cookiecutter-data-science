@@ -1,4 +1,4 @@
-# Cookiecutter Data Science
+# Cookiecutter4FAIR
 
 [![DOI](https://zenodo.org/badge/416494237.svg)](https://zenodo.org/badge/latestdoi/416494237)
 
