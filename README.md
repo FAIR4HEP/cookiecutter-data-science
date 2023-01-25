@@ -32,6 +32,10 @@ $ conda install cookiecutter
 $ cookiecutter https://github.com/FAIR4HEP/cookiecutter4fair
 ```
 
+### Demo:
+------------
+[![asciicast](https://asciinema.org/a/554117.svg)](https://asciinema.org/a/554117)
+
 ### The resulting directory structure
 ------------
 
